@@ -1,7 +1,9 @@
 package com.facbrito.dslearnbds.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -14,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,13 +35,12 @@ public abstract class Lesson implements Serializable {
 	@JoinColumn(name = "section_id")
 	private Section section;
 
+	@OneToMany(mappedBy = "lesson")
+	private List<Deliver> deliveries = new ArrayList<>();
+
 	@ManyToMany
-	@JoinTable(name = "tb_lessons_done", joinColumns = @JoinColumn(name = "lesson_id"),
-			inverseJoinColumns = {
-						@JoinColumn(name = "user_id"), 
-						@JoinColumn(name = "offer_id") 
-					}
-			)
+	@JoinTable(name = "tb_lessons_done", joinColumns = @JoinColumn(name = "lesson_id"), inverseJoinColumns = {
+			@JoinColumn(name = "user_id"), @JoinColumn(name = "offer_id") })
 	private Set<Enrollment> enrollmentDone = new HashSet<>();
 
 	public Lesson() {
@@ -81,6 +83,10 @@ public abstract class Lesson implements Serializable {
 
 	public void setSection(Section section) {
 		this.section = section;
+	}
+
+	public List<Deliver> getDeliveries() {
+		return deliveries;
 	}
 
 	public Set<Enrollment> getEnrollmentDone() {
