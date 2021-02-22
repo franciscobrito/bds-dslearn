@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.facbrito.dslearnbds.UserDTO;
+import com.facbrito.dslearnbds.dto.UserDTO;
 import com.facbrito.dslearnbds.services.UserService;
 
 @RestController

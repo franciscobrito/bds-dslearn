@@ -1,4 +1,4 @@
-package com.facbrito.dslearnbds;
+package com.facbrito.dslearnbds.dto;
 
 import java.io.Serializable;
 
